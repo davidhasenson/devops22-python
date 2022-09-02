@@ -73,10 +73,18 @@ print(cars_2)
 
 #10.1. Skapa ytterligare en variabel cars_3 som får sina element av cars
 #men som inte påverkas av vad som läggs till i cars .
+
+
 #10.2. Utöka variabeln cars så att den innehåller dubbletter av varje bilmärke
 #sorterat i omvänd bokstavsordning.
+
+
 #10.3. Från den utökade versionen av cars ifrån förra uppgiften, skapa
 #variabeln unique_cars som ska vara en lista där varje bilmärke finns
 #med exakt en gång.
+
+
 #11. Vilken datatyp har variablerna numbers1 och numbers2 ?
+
+
 #12. Vilka värden finns lagrade i variablerna numbers1 och numbers2
