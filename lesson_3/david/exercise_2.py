@@ -30,27 +30,53 @@ print(len(addresses))
 last_key = sorted(addresses)[-1]
 print(addresses[last_key])
 
-"""
-5.2. Utöka programmet så att namnet skrivs ut på den personen som bor
-på adressen som kommer först i bokstavsordning. Tips: följande rad
-byter plats på keys och values i my_dict :
-my_dict = {v: k for k, v in my_dict.items()}
-Förklaring kommer nästa lektion!
-6. Vilken datatyp har variabeln cars ?
-7. Vad returneras om man skriver cars[X] ?
-8. Vad returneras om man skriver cars[Y] , varför?
-9. Vad returneras om man först skriver cars.sort() och på nästa rad skriver
-cars[0] ?
-10. Skapa en ny variabel genom att skriva cars_2 = cars , och på följande rad ska
-strängen “Saab” läggas till cars med hjälp av append(). Notera att det alltså
-bara är ena variabeln som ska utökas. Vad innehåller variablerna cars_2 och
-cars nu? Förklara!
-10.1. Skapa ytterligare en variabel cars_3 som får sina element av cars
-men som inte påverkas av vad som läggs till i cars .
-10.2. Utöka variabeln cars så att den innehåller dubbletter av varje bilmärke
-sorterat i omvänd bokstavsordning.
-10.3. Från den utökade versionen av cars ifrån förra uppgiften, skapa
-variabeln unique_cars som ska vara en lista där varje bilmärke finns
-med exakt en gång.
-11. Vilken datatyp har variablerna numbers1 och numbers2 ?
-12. Vilka värden finns lagrade i variablerna numbers1 och numbers2"""
+
+#5.2. Utöka programmet så att namnet skrivs ut på den personen som bor
+#på adressen som kommer först i bokstavsordning. Tips: följande rad
+#byter plats på keys och values i my_dict :
+#my_dict = {v: k for k, v in my_dict.items()}
+#Förklaring kommer nästa lektion!
+
+names = {v: k for k, v in addresses.items()}
+first_key = sorted(names)[0]
+print(names[first_key])
+
+#6. Vilken datatyp har variabeln cars ?
+# list
+
+#7. Vad returneras om man skriver cars[X] ?
+# X har blivit tildelat 1. Vi skriver altså ut bilen på plats ett i listan 'cars'.
+print(cars[X])
+
+
+#8. Vad returneras om man skriver cars[Y] , varför?
+#man får IndexError: list index out of range för att listan är lortare en den plats man vill skriva ut
+#print(cars[Y])
+
+#9. Vad returneras om man först skriver cars.sort() och på nästa rad skriver cars[0] ?
+cars.sort()
+print(cars[0])
+
+
+#10. Skapa en ny variabel genom att skriva cars_2 = cars , och på följande rad ska
+#strängen “Saab” läggas till cars med hjälp av append(). Notera att det alltså
+#bara är ena variabeln som ska utökas. Vad innehåller variablerna cars_2 och
+#cars nu? Förklara!
+# cars_2 pekar på samma lista i minnet som cars gör. Så när man ändrat cars blir cars_2 också ändrad.
+cars_2 = cars
+cars.append("Saab")
+print(cars)
+print(cars_2)
+
+# För att skapa en ny separat lista.
+#cars_2=list(cars)
+
+#10.1. Skapa ytterligare en variabel cars_3 som får sina element av cars
+#men som inte påverkas av vad som läggs till i cars .
+#10.2. Utöka variabeln cars så att den innehåller dubbletter av varje bilmärke
+#sorterat i omvänd bokstavsordning.
+#10.3. Från den utökade versionen av cars ifrån förra uppgiften, skapa
+#variabeln unique_cars som ska vara en lista där varje bilmärke finns
+#med exakt en gång.
+#11. Vilken datatyp har variablerna numbers1 och numbers2 ?
+#12. Vilka värden finns lagrade i variablerna numbers1 och numbers2
