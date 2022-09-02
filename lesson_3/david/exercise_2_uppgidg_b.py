@@ -65,11 +65,12 @@ print(f"The person with median shoe size is {medianstorlek_shoe[0]} who is {medi
 
 hitta = input("Please enter search value, name, age or size followed by value. ")
 print(hitta)
-name = persons[0]
+
+name = persons[0:]
 print(name)
 age = persons[1]
 print(age)
 shoe_size = persons[2]
 print(shoe_size)
 
-#print(f" hitta {sök in persons} ")
+#print(f"Found person Name:  Age: Sice:  ")
