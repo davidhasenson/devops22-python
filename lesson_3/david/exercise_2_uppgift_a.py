@@ -89,6 +89,26 @@ unique_cars = set(cars)
 print(unique_cars)
 
 #11. Vilken datatyp har variablerna numbers1 och numbers2 ?
-
+# Ett set
 
 #12. Vilka värden finns lagrade i variablerna numbers1 och numbers2
+# int och varialel
+
+#13 Vad är snittet (intersection) mellan variablerna numbers1 och numbers2 ?
+#det ger de nummer som finns i båda setten.
+print(numbers1 & numbers2)
+#eller på detta vis
+print(numbers1.intersection(numbers2))
+
+#14. Vad är unionen mellan variablerna numbers1 och numbers2 ?
+print(numbers1 | numbers2)
+#eller på detta vis
+print(numbers1.union(numbers2))
+
+#15. Vilken är den symmetriska differensen mellan numbers1 och numbers2 ?
+#jämför numbers_1 mednumbers_2 och tar ut de unika värdena.
+print(numbers1.symmetric_difference(numbers2))
+
+#print(numbers1 - numbers2)
+#print(numbers1.difference(numbers2))
+# Tar ut de nummer som är unika för numbers_1
