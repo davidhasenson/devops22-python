@@ -25,7 +25,7 @@ addresses["Daniel"] = "Prinsgränd 2"
 #5. Få ditt program att skriva ut hur många keys addresses har.
 print(len(addresses))
 
-#5.1. Utöka programmet så att adressen skrivs ut till den personen somkommer sist i bokstavsordning.
+#5.1. Utöka programmet så att adressen skrivs ut till den personen som kommer sist i bokstavsordning.
 # Sortera lista och ta ut den sista key
 last_key = sorted(addresses)[-1]
 print(addresses[last_key])
@@ -101,6 +101,7 @@ print(numbers1 & numbers2)
 print(numbers1.intersection(numbers2))
 
 #14. Vad är unionen mellan variablerna numbers1 och numbers2 ?
+#det ger 
 print(numbers1 | numbers2)
 #eller på detta vis
 print(numbers1.union(numbers2))
