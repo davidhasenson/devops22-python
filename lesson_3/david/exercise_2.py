@@ -73,16 +73,20 @@ print(cars_2)
 
 #10.1. Skapa ytterligare en variabel cars_3 som får sina element av cars
 #men som inte påverkas av vad som läggs till i cars .
-
+cars_3=list(cars)
+print(cars_3)
 
 #10.2. Utöka variabeln cars så att den innehåller dubbletter av varje bilmärke
 #sorterat i omvänd bokstavsordning.
-
+cars = cars*2
+cars.sort(reverse=True)
+print(cars)
 
 #10.3. Från den utökade versionen av cars ifrån förra uppgiften, skapa
 #variabeln unique_cars som ska vara en lista där varje bilmärke finns
 #med exakt en gång.
-
+unique_cars = set(cars)
+print(unique_cars)
 
 #11. Vilken datatyp har variablerna numbers1 och numbers2 ?
 
