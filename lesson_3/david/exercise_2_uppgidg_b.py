@@ -1,21 +1,22 @@
 # person 1 information
 from ast import Compare
 from gettext import find
+from multiprocessing.sharedctypes import Value
 
 
-person_1_name = "kalle".title() #input("Please enter name for person 1: ").title()
+person_1_name = "kalle".title() #input("Please enter name for person 1: ").lower()
 person_1_age = 55 #input("Please enter age for person 1: ")
 person_1_shoe_size = 19 #input("Please enter shoe size for person 1: ")
 
 # person 2 information
-person_2_name = "anders".title() #input("Please enter name for person 2: ")
-person_2_age = 77 #input("Please enter age for person 2: ")
-person_2_shoe_size = 14 #input("Please enter shoe size for person 2: ")
+person_2_name = "anders".title() #input("Please enter name for person 2: ").lower()
+person_2_age = 77 #int(input("Please enter age for person 2: "))
+person_2_shoe_size = 14 #int(input("Please enter shoe size for person 2: "))
 
 # person 3 information
-person_3_name = "max".title() #input("Please enter name for person 3: ")
-person_3_age = 66 #input("Please enter age for person 3: ")
-person_3_shoe_size =  34 #input("Please enter shoe size for person 3: ")
+person_3_name = "max".title() #input("Please enter name for person 3: ").lwer()
+person_3_age = 66 #int(input("Please enter age for person 3: "))
+person_3_shoe_size =  34 #int(input("Please enter shoe size for person 3: "))
 
 #lägg till personer i en dictionary. namn är key age och shoe size är väredn.
 """
@@ -28,9 +29,6 @@ print(person_2)
 person_3 = {person_3_name : (person_3_age, person_3_shoe_size)}
 print(person_3)
 
-"""
-
-"""
 persons_all = {person_1_name : (person_1_age, person_1_shoe_size),
 person_2_name : (person_2_age, person_2_shoe_size),
 person_3_name : (person_3_age, person_3_shoe_size)  }
@@ -63,8 +61,8 @@ print(f"The person with median shoe size is {medianstorlek_shoe[0]} who is {medi
 
 #print(f"The oldest person is {oldest_person} who has shoe size {} ")
 
-hitta = input("Please enter search value, name, age or size followed by value. ")
-print(hitta)
+value_1, value_2 = input("Please enter search value, name, age or size followed by value. ").split(" ")
+print(value_1, value_2)
 
 name = persons[0:]
 print(name)
