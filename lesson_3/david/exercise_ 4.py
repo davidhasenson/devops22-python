@@ -25,6 +25,7 @@ print(find_color not in color_list)
 
 # 8 Create another list of colors and concatenate the two lists using the operation s + t
 
+
 # 9 Create a list of two colors red, yellow with three of each color using the operation s * n
 
 # 10 Print the first four colors in the list from (9) using the operation s[i:j]
