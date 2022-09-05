@@ -1,3 +1,4 @@
+# Exercise 3 Repeat word
 # Write a program that fulfills the specification:"
 
 # Ask the user for a word

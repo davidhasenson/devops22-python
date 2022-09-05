@@ -1,3 +1,4 @@
+# Exercise 1 even or odd
 # Write a program that fulfills the specification:
 
 #Ask the user for a integer
