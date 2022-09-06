@@ -2,11 +2,16 @@
 # Write a program that fulfills the specification:
 
 # Ask the user for a start and stop integer
-#start_int, stop_int = int(input("write a start integer and a stop integer: "))
+# start_int, stop_int = int(input("write a start integer and a stop integer: "))
 start_int = int(input("Enter a start integer: "))
 stop_int = int(input("Enter a stpo integer: "))
 
 # Print every integer between start and stop. i.e. start = 1, stop = 5 would print:
+# 1
+# 2
+# 3
+# 4
+
 number = start_int
 while number < stop_int:
     print(number)
@@ -17,6 +22,8 @@ for x in range(start_int, stop_int):
     print(x)
 
 # Print the sum of all integers i.e
+# sum 10
+
 number = start_int
 sum = 0
 while number < stop_int:

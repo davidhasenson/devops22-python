@@ -1,5 +1,5 @@
 # Exercise 2 VIP
-# # Write a program that fulfills the specification:
+# Write a program that fulfills the specification:
 
 # Ask the user for a name
 new_name = input("Write your name: ").lower()
