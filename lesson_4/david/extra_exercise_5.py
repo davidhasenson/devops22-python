@@ -22,19 +22,17 @@ for x in range(len(second_list)):
         # second_list[x] hämtar värdet på position x i second_list. 
         # first_list.index() hämtar index (platsen i en lista) i first_list för värdet som gavs av second_list[x] 
         # first_list[] hämtar värdet som finns på index (platsen) som first_list.index() anger
-        get_index = first_list[first_list.index(second_list[x])]
-        # .index breättar positionen i first_list på värdet som anges av second_list[x] ?
-        #eller
-        # second_list[x] hämtar värdet på position x i second_list. 
-        # first_list.index() hämtar index (positionen i en lista) i first_list för värdet som gavs av second_list[x]
-        get_value = first_list.index(second_list[x])
+        get_value = first_list[first_list.index(second_list[x])]
+        get_index = first_list.index(second_list[x])
+
         # print(get_index)
         # print(get_value)
 
         # skapa en ny tuple med värdena
-        new_tuple = (get_index, get_value)
+        new_tuple = (get_value, get_index)
         # print(new_tuple)
 
-        # lägg till puple til lista
+        # lägg till tuple till lista
         new_list.append(new_tuple)
+
 print(new_list)
