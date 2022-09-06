@@ -30,7 +30,6 @@ print(len(addresses))
 last_key = sorted(addresses)[-1]
 print(addresses[last_key])
 
-
 #5.2. Utöka programmet så att namnet skrivs ut på den personen som bor
 #på adressen som kommer först i bokstavsordning. Tips: följande rad
 #byter plats på keys och values i my_dict :
@@ -48,7 +47,6 @@ print(names[first_key])
 # X har blivit tildelat 1. Vi skriver altså ut bilen på plats ett i listan 'cars'.
 print(cars[X])
 
-
 #8. Vad returneras om man skriver cars[Y] , varför?
 #man får IndexError: list index out of range för att listan är lortare en den plats man vill skriva ut
 #print(cars[Y])
@@ -56,7 +54,6 @@ print(cars[X])
 #9. Vad returneras om man först skriver cars.sort() och på nästa rad skriver cars[0] ?
 cars.sort()
 print(cars[0])
-
 
 #10. Skapa en ny variabel genom att skriva cars_2 = cars , och på följande rad ska
 #strängen “Saab” läggas till cars med hjälp av append(). Notera att det alltså
