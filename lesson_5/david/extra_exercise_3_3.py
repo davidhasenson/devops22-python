@@ -1,7 +1,4 @@
 ny_str = "jAg tYcker om äGg"
-inte_str = "inte"
-spam_str = "SPAM"
-mellanslag_str = " "
 
 # ny_str.capitalize utförs men sparas ingenstans. 
 # Print skriver ut en omodifieras sträng.
