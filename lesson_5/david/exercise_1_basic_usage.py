@@ -4,6 +4,9 @@ tele = "00468123456789"
 
 # Print first, lastname and tele on the same line
 print(firstname, lastname, tele)
+print(firstname, end=" ")
+print(lastname, end=" ")
+print(tele)
 
 # Create a variable fullname
 # Assign to the new variable fullname, firstname and lastname separated with a space.
