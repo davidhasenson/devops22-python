@@ -13,7 +13,7 @@ print(combine_strings)
 
 # Testa dig igenom alla escape-sekvenser nämnda i presentationen genom en
 # serie print-kommandon. (Teckenkoder för att testa de escapesekvenserna
-# kan du exempelvis hitta här: https://www.leformat.info/info/unicode/block/miscellaneous_symbols/). 
+# kan du exempelvis hitta här: https://www.fileformat.info/info/unicode/block/miscellaneous_symbols/). 
 # För att se resultatet bör du ha ett tecken före och ett tecken efter, exempelvis:
 # print("A\nB")
 
