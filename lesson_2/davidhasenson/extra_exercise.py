@@ -57,6 +57,7 @@ print(f"{tal_A_int} delat på {tal_A_int} som integer blir {tal_A_int//tal_B_int
 # mycket exakt pi i beräkningarna. Om ni inte bryr er om att vara exakta går det bra att
 # bara sätta pi till 3,14
 from math import pi
+from unicodedata import name
 
 # Skriv in ett värde på cirkelns radie.
 radius = int(input("Skriv in cirkelns radie så får du veta dess area:"))
@@ -100,7 +101,7 @@ print(f"Det är {number_of_houer} timmar och {number_of_minutes} minuter på 455
 
 # 13 Skriv ett program som ber användaren att skriva in ett antal sekunder och sedan räknar
 # ut hur många dagar, timmar, minuter och sekunder det går på de sekunderna.
-total_seconds = int(input("Skriv ett antal sekunder så får du veta hur många dagar, timmar, minuter och sekunder det går på de sekunderna. "))
+total_seconds = int(input("Skriv ett antal sekunder: ")) # så får du veta hur många dagar, timmar, minuter och sekunder det går på de sekunderna: "))
 # Beräkna antal dagar
 seconds_in_a_day = 60*60*24
 number_of_days = total_seconds//seconds_in_a_day
@@ -137,10 +138,37 @@ print(z)
 
 # 16 Be användaren att skriva in olika temperaturer, konvertera sedan temperaturen till 
 # fahrenheit Fahrenheit = Celsius * 9/5 + 32
-celcius = float(input("Skriv en temperatur: "))
-fahrenheit = celcius * (9/5) + 32
-print(f"{celcius} Celcius är {fahrenheit} Fahrenheit")
+celcius = int(input("Skriv en temperatur i Celcius: "))
+fahrenheit = celcius * 9/5 + 32
+print(f"{celcius} Celcius motsvarar {fahrenheit} Fahrenheit")
 
-# 17
-# 18
-# 19
+# 17 Skapa ett program som frågar användaren efter deras namn och ålder. 
+# Programmet ska sedan skriva ut vilket år användaren fyller 100 och vilket år användaren föddes.
+name = input("Skriv ditt namn: ")
+age = int(input("Skriv din ålder: "))
+birth_year = 2022 - age
+hundred_year = birth_year + 100
+print(f"{name} är född år {birth_year} och fyller 100 år {hundred_year} ")
+
+# 18 Skapa ett program som frågar användaren efter ett nummer. Beroende på om siffran är
+# udda eller jämnt ska programmet skriva ut olika meddelanden. Tips: I denna uppgift
+# behöver du en så kallad if-sats. Använd google för att förstå hur en if-sats fungerar .
+number = int(input("Skriv ett nummer: "))
+if number %2 == 0:
+    print(f"{number} är ett jämnt nummer. ")
+else:
+    print(f"{number} är ett udda nummer. ")
+
+# 19 Din kollega har skickat ett litet program till dig enligt nedan. Det fungerar visserligen,
+# men vad har du för kommentarer till din kollegas programmeringsstil?
+
+print ( "Detta är mitt bästa program" ) # Här skriver jag ut en
+# välkomsthälsning till användaren av detta program
+A = int(input())
+Ålder = int(A) # Skriv till fönster
+#minInputVariabel = float(A)
+print("Ålder", A)
+ 
+# input ger ingen beskrivning på vat den vill ha. Anger inte ens att den vill ha ett input.
+# Variabeln ålder används inte
+# Mycket stökigt program
