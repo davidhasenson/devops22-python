@@ -11,6 +11,6 @@ word = input("write a word: ")
 # hello
 # hello
 
-x = len(word)
-for x in range (x):
+word_lenght = len(word)
+for i in range (word_lenght):
     print(word)

@@ -18,8 +18,8 @@ while number < stop_int:
     number +=1
 
 # eller så här
-for x in range(start_int, stop_int):
-    print(x)
+for i in range(start_int, stop_int):
+    print(i)
 
 # Print the sum of all integers i.e
 # sum 10
@@ -29,4 +29,10 @@ sum = 0
 while number < stop_int:
     sum = sum + number
     number +=1
+print(f"Sum: {sum}")
+
+# eller
+sum = 0
+for i in range(start_int, stop_int):
+    sum = i +sum
 print(f"Sum: {sum}")
