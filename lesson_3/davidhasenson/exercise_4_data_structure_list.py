@@ -1,7 +1,4 @@
 # 1 Create a empty list
-from cgi import print_arguments
-
-
 color_list_1 = []
 
 # 2 Create a string that is a color e.g "red"
