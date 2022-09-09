@@ -11,7 +11,7 @@ new_list = []
 # print(second_list[1])
 # print(second_list.index(3))
 
-# om x är mindre än längden listan utför loopen
+# om x är mindre än längden på listan utför loopen
 for x in range(len(second_list)):
    #print(x)
    # om värdet i second_list[x] finns i first_list. gå in.
