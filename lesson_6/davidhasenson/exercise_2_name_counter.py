@@ -16,14 +16,19 @@ print(count_name)
 
 
 top_name = Counter(name_list).most_common(3)
-print(top_name)
+print(f"Top names {top_name} ")
 
-least_popular_name = Counter(name_list).most_common(3)[:-3-1:-1]
-print(least_popular_name)
+least_popular_name = Counter(name_list).most_common(3)[::-1]
+print(f"Least popular names {least_popular_name} ")
 
-sorted_names = sorted(count_name)
-print(set(count_name))
+sorted_names = sorted(set(count_name))
+print(sorted_names)
 
+sorted_names_shuffled = random.shuffle(sorted_names)
+print(sorted_names_shuffled)
+
+sorted_names_reverse = sorted_names[::-1]
+print(sorted_names_reverse)
 
 """
 
