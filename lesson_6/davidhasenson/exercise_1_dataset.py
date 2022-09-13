@@ -1,7 +1,7 @@
 
 # Generate a list containing the numbers 1, 2, 3 to 100.
 import random
-from random import choices
+from random import choices, sample
 
 
 one_to_hundred = [x for x in range(1, 101)]
@@ -18,7 +18,7 @@ one_to_hundred_random_not_unique = random.choices(range(1, 301), k=100)
 #print(sorted(one_to_hundred_random_not_unique))
 coloe_list = ["orange", "Green", "Yellow", "Blue", "black"]
 my_colors = ["Red"]
-random_collor = choices(coloe_list, k=2)
+random_collor = sample(coloe_list, k=2)
 #print(random_collor)
 my_colors = my_colors + random_collor
 #print(my_colors)
