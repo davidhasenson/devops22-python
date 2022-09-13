@@ -5,4 +5,4 @@ my_secound_variable = "World"
 
 print(my_variable)
 print(my_secound_variable)
-#print(my_third_variable)
+print(my_third_variable)
