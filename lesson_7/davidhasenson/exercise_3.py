@@ -39,7 +39,6 @@ print(sum_int_list(list_1))
 
 # Create a function that repeats a word multiple time, word and repeat is used as parameters. If the word is hello and repeat is 3, it will print hello three times.
 def repeat_word(word, repeat):
-    return word * int(repeat)
+    return word * repeat
 print(repeat_word("Hello world ", 3))
 
-    
