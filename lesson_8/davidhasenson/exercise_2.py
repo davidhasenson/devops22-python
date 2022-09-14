@@ -5,9 +5,13 @@ def validate_int(my_input):
         if my_int % 2 == 0:
             raise  Exception('Even numbers is not allowed')
         return my_int
+    except Exception as e:
+        print(e)
+        return validate_int(my_input)
     except ValueError:
         print("Sorry, not an int")
         return validate_int(my_input)
+    
         
 
 my_number = validate_int("skriv en integer ")

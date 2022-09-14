@@ -6,7 +6,7 @@ def is_float(x):
         raise TypeError("Är inte en float")
 
 #is_float(2)
-is_float(2.0)
+is_float(2)
 
 #print(2 == float)
 
