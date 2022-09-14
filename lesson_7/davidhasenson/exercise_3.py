@@ -33,7 +33,7 @@ print(rectangle_area_calculation(2,4))
 
 # Create a function that expects a list as argument, the list should contain integers and the function should return the sum of all elements in the list.
 list_1 = [1,2,3,4]
-def sum_int_list(my_list=[]):
+def sum_int_list(my_list):
     return sum(my_list)
 print(sum_int_list(list_1))
 
