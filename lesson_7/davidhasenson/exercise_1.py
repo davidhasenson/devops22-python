@@ -32,7 +32,7 @@ hello_name("max")
 
 # Create a function that prints a string in capital letters, with word as a parameter
 def capiytal_string(word):
-    print(f"{word.capitalize()} ")
+    print(f"{word.upper()} ")
 capiytal_string("hej")
 
 # Create a function that prints numbers between 1 and stop, where stop is a parameter
