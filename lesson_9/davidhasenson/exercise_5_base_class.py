@@ -1,3 +1,5 @@
+import random 
+
 class Person:
 
     def __init__(self, name, year_of_birth):
@@ -21,15 +23,29 @@ class Coach(Person):
 class Team:
 
     def __init__(self, players, coach):
-        self.player = players
+        self.players = players
         self.coach = coach
 
-def main():
-    team_coach = Coach("Max", 1999, 7)
+    def summerize_team(self):
+        team = " My team "
+        team += f"Coach {self.coach}\n"
+        team += "Players \n"
+        team += "\n".join(map(str, self.players))
+        return team
 
-    team_players = []
-    for name in ["lisa", "eva", "petra", "linda", "amanda", "jonna", "malin", "fredrika", "frida", "jenny"]:
+def random_level():
+    return random.randint(1, 10)
+
+def main():
+    coach = Coach("Max", 1999, 7)
     
+    players = []
+    for name in ["lisa", "eva", "petra", "linda", "amanda", "jonna", "malin", "fredrika", "frida", "jenny"]:
+        year_of_birth = 1949
+        players.append(player(name, year_of_birth, random_level() ,random_level() , random_level() ))
+
+    team = Team(players, coach)
+    print(team.summerize_team())
 
 if __name__=="--main_":
     main()
