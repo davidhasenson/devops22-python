@@ -11,21 +11,20 @@ class Square:
     def __init__(self, side):
         self.side = side
 
-    def area(side):
-        area = side **2 
+    def area(self):
+        area = self.side **2 
         return float(area)
 
-    def circumference(side):
-        circumference = side * 4
+    def circumference(self):
+        circumference = self.side * 4
         return float(circumference)
 
 if __name__ =="__main__":
-    # my_oject = MyClass("args")
-    # print(my_class.my_method())
 
-    # my_another_object = My_Class("args")
-    # print(my_another_object.my_method())
+    square_1 = Square(2)
+    print(square_1.area())
+    print(square_1.circumference())
 
-    my_test = Square(2)
-    #print(my_test.area())
-    print(my_test.circumference())
+    square_2 = Square(3.5)
+    print(square_2.area())
+    print(square_2.circumference())
