@@ -47,5 +47,5 @@ def main():
     team = Team(players, coach)
     print(team.summerize_team())
 
-if __name__=="--main_":
+if __name__=="__main__":
     main()
