@@ -32,7 +32,7 @@ class Menu:
         if choice == 3:
             self.running = False
         elif choice == 1:
-            self.greeting.say_hello()
+            self.greeting.say_hel
         elif choice == 2:
             self.greeting.say_goodbye()
 
