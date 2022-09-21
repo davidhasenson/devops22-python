@@ -21,7 +21,7 @@ connection.execute("""INSERT INTO person(
                 )""")
 
 connection.execute("""INSERT INTO person(
-                id,
+                id,ccc
                 firstname,
                 lastname
                 ) VALUES (
