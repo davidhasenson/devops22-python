@@ -1,0 +1,46 @@
+{
+    "items": [
+        {
+            "typ": "banana",
+            "pris": 2
+
+        },
+        {
+            "typ": "apple",
+            "pris": 5
+
+        }, {
+            "typ": "pear",
+            "pris": 2
+
+        }, {
+            "typ": "grapes",
+            "pris": 8
+
+        }, {
+            "typ": "orange",
+            "pris": 6
+
+        }, {
+            "typ": "kiwi",
+            "pris": 9
+
+        }, {
+            "typ": "mango",
+            "pris": 15
+
+        }, {
+            "typ": "strawberry",
+            "pris": 20
+
+        }, {
+            "typ": "blueberry",
+            "pris": 12
+
+        }, {
+            "typ": "raspberry",
+            "pris": 17
+
+        }
+    ]
+}
