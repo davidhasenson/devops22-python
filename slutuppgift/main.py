@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from menu import *
 from shoppingcart import *
 import json
@@ -26,15 +27,21 @@ def load_file_json_2():
     print(data_to_database_executemany)
     
 def import_csv_file():
-    con = sqlite3.connect("articles.db")
-    cur = con.cursor()
-    path = "slutuppgift\items.csv" #input("Enter file path: ")
-    with open(path, "r") as file:
-        reader = csv.reader(file)
-        with con:
-            cur.execute(create_table_items())
-            for row in reader:
-                cur.execute(insert_data_into_items(), row)
+    try:   
+        con = sqlite3.connect("articles.db")
+        cur = con.cursor()
+        path = "slutuppgift\items.csv" #input("Enter file path: ")
+        with open(path, "r") as file:
+            reader = csv.reader(file)
+            print(reader)
+            with con:
+                cur.execute(create_table_items())
+                for row in reader:
+                    print((row[0],row[1]))
+                    cur.execute(insert_data_into_items(), (row[0],row[1],))
+    except:
+        print("import file failed. ")
+
 
 def get_all_items():
     try:
@@ -65,16 +72,17 @@ def get_all_items_with_price():
 def create_table_items():
             return """
                     CREATE TABLE IF NOT EXISTS items(
-                        itemname TEXT, 
-                        price
+                        id INTEGER UNIQUE,
+                        itemname TEXT UNIQUE, 
+                        price REAL
                     )
                     """
 
 def insert_data_into_items():
         return """
                 INSERT INTO items(
-                    itemname ,
-                    price
+                    itemname,
+                    price 
                 ) 
                 VALUES (?, ?)
                 """
@@ -93,25 +101,21 @@ def add_item():
 def create_table_cart():
             return """
                     CREATE TABLE IF NOT EXISTS carts(
-                        itemname TEXT, 
-                        numberofitems
+                        id INTEGER UNIQUE,
+                        itemname TEXT UNIQUE, 
+                        numberofitems INTEGER,
+                        completed TEXT
                     )
                     """ 
 
 def insert_data_into_cart():
             return """
                     INSERT INTO carts(
-                        itemname ,
+                        itemname,
                         numberofitems
                     ) 
                     VALUES (?, ?)
                     """
-                    
-def create_table_cart():
-    con = sqlite3.connect("articles.db")
-    cur = con.cursor()
-    with con:
-        cur.execute(create_table_cart())
 
 def add_to_cart():
     try:
@@ -120,9 +124,40 @@ def add_to_cart():
         con = sqlite3.connect("articles.db")
         cur = con.cursor()
         with con:
+            cur.execute(create_table_cart())
             cur.execute(insert_data_into_cart(), (item, amount,))   
     except:
         print("Error. can not add to cart. ")      
+
+def delete_from_cart():
+    try:
+        find = input("Enter item to delete from cart: ")
+        con = sqlite3.connect("articles.db")
+        cur = con.cursor()
+        cur.execute("SELECT * FROM carts WHERE itemname=?", (find,))
+        item = cur.fetchall()
+        if item == None:
+            print("No item found")
+        else:
+            with con:
+                cur.execute("DELETE FROM carts WHERE itemname=?", (find,))         
+    except:
+        print("Error. can not delete from cart. ")  
+
+def close_cart():
+    try:
+        close = input("do yoy want too close cart (y/n): ")
+        con = sqlite3.connect("articles.db")
+        cur = con.cursor()
+        print(close)
+        if close != "y":
+            print("cart not closed")
+        else:
+            with con:
+                cur.execute("UPDATE carts SET compleated = ? WHERE id = ? ", (close, id))
+                print("cart closed")       
+    except:
+        print("Error. can not close cart. ")  
 
 def main():
     Menu().menu_loop()

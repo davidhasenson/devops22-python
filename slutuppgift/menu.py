@@ -11,11 +11,10 @@ class Menu:
         1. Load a file to database (import_csv_file())
         2. Visa alla varor i sortimentet
         3. lägg till vara till sortimentet
-        4. skapa varukorg
-        5. lägg till en vara i varukorgen
-        6. ta bort en vara från varukorgen
-        7. slutför beställning
-        8. spara beställning 
+        4. lägg till en vara i varukorgen
+        5. ta bort en vara från varukorgen
+        6. slutför beställning
+        7. spara beställning 
         """
 
     def __init__(self):
@@ -38,11 +37,11 @@ class Menu:
         elif choice == 3:
             add_item()
         elif choice == 4:
-            create_table_cart()
-        elif choice == 5:
             add_to_cart()
+        elif choice == 5:
+            delete_from_cart()
         elif choice == 6:
-            pass
+            close_cart()
         elif choice == 7:
             pass
         else:
