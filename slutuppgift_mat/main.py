@@ -30,7 +30,7 @@ def import_csv_file():
     try:   
         con = sqlite3.connect("articles.db")
         cur = con.cursor()
-        path = "slutuppgift\items.csv" #input("Enter file path: ")
+        path = "slutuppgift_mat\items.csv" #input("Enter file path: ")
         with open(path, "r") as file:
             reader = csv.reader(file)
             print(reader)
