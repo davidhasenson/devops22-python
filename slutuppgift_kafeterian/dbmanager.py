@@ -25,8 +25,7 @@ INSERT_DATA_MENUITEMS = """
 CREATE_TABLE_ORDERS = """
                 CREATE TABLE IF NOT EXISTS orders(
                     orderid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                    itemid INTEGER,
-                    itemname TEXT,
+                    itemid INTEGER NOT NULL,
                     extrasugar TEXT,
                     extramilk TEXT,
                     completed TEXT,
@@ -78,7 +77,7 @@ class Dbmanager:
                     for row in reader:
                         print(row)
                         cur.execute(INSERT_DATA_MENUITEMS, row)
-        except:
+        except Exception:
             print("Importing file failed. ")
 
     def view_menu(self):
@@ -86,7 +85,7 @@ class Dbmanager:
             with con:
                 cur.execute("SELECT * FROM menu")
                 menu = cur.fetchall()
-                print(f"{menu} \n\n  item id \t itemname \t  description ")
+                print(f"{menu} \n\n  Item id \t Item name \t Description ")
                 for i in menu:
                     print(f"\t{i[0]} \t {i[1]} \t {i[2]}")
         except Exception:
@@ -94,19 +93,20 @@ class Dbmanager:
 
     def add_order(self):
         try:
-            itemid = input("Enter item id: ")
-            # cur.execute("SELECT menu.itemid FROM menu WHERE item = ?", itemid)
+            #itemid = input("Enter item id: ")
+            #itemid = self.input_test(int, "Enter item id: ", "inte ett val. måste ange en int")
+            # itemid = self.input_int("Enter item id: ")
+            # print("item id added")
+            itemid = self.check_itemid("Enter item id: ")
+            print(itemid)
+            # cur.execute("SELECT menu.itemid FROM menu WHERE itemid = ?", itemid)
             # menuid_check = cur.fetchone()
+            # print(menuid_check)
             # if menuid_check != itemid:
-            #     print("not a menu option ")
-            #     self.add_order()
+            #      print("not a menu option ")
             # cur.execute("SELECT menu.itemname FROM menu, orders WHER itemid = itemid")
-            extrasugar = input("Do you want extra sugar?(y/n) ")
-            # if extrasugar != "y" or "N":
-            #     self.add_order()
-            extramilk = input("Do you want extra milk?(y/n) ")
-            # if extrasugar != "y" or "N":
-            #     self.add_order()
+            extrasugar = self.input_y_or_n("Do you want extra sugar?(y/n) ")
+            extramilk = self.input_y_or_n("Do you want extra milk?(y/n) ")
             with con:
                 cur.execute(CREATE_TABLE_ORDERS)
                 print("tabell skapad")
@@ -119,7 +119,6 @@ class Dbmanager:
     def show_orders(self):
         try:
             with con:
-                #cur.execute("SELECT * FROM orders")
                 cur.execute("SELECT * FROM orders WHERE completed = 'n'")
                 print("letar i db \n")
                 orders = cur.fetchall()
@@ -127,13 +126,57 @@ class Dbmanager:
                 for i in orders:
                     print(f"{i[0]} \t {i[1]} \t {i[2]} \t {i[3]} \t\t {i[4]} \t {i[5]} \t {i[6]}")
 
-        except Exception:
-            print("error . kunde inte trycka order ")
+        except Exception as e:
+            print(e)
 
+    def input_int(self, text):
+        while True:
+            try:
+                input_test = int(input(text))
+                print(input_test)
+                return input_test
+            except ValueError as v:
+                print(v)
+                print("måste ange en int")
+            except Exception as e:
+                print(e)
 
+    def input_y_or_n(self,text):
+            while True:
+                try:
+                    input_test = input(text).lower()
+                    if input_test in  ("y", "n"):
+                        return input_test
+                    print("inte ett val. måste ange yes(y) or no(n)")
+                except Exception as e:
+                    print(e)    
 
+    def check_itemid(self, text):
+        while True:
+            try:
+                itemid = self.input_int(text)
+                print(f"itemid {itemid} ")
+                cur.execute("SELECT menu.itemid FROM menu WHERE itemid = ?", (itemid,))
+                menuid_check = cur.fetchone()
+                menuid_check = menuid_check[0]
+                print(f"menuid_check {menuid_check} ")
+                if menuid_check == itemid:
+                    return menuid_check
+                print("not a menu option ")
+            except Exception as e:
+                print(e)
 
-
-
-    def delete_db(self):
-        os.remove("devops22-python\shop.db")
+    def get_itemname(self, text):
+        while True:
+            try:
+                itemid = self.input_int(text)
+                print(f"itemid {itemid} ")
+                cur.execute("SELECT menu.itemname FROM menu WHERE itemid = ?", (itemid,))
+                menuid_check = cur.fetchone()
+                menuid_check = menuid_check[0]
+                print(f"menuid_check {menuid_check} ")
+                if menuid_check == itemid:
+                    return menuid_check
+                print("not a menu option ")
+            except Exception as e:
+                print

@@ -22,7 +22,8 @@ class Menu:
     def user_input(self):
         try: # varför fungerar inte det?
             return int(input("Enter your choice [1-6]: "))
-        except TypeError:
+        except ValueError as v:
+            print(v)
             print("du måste ange en integer. ")
 
     def menu_choice(self, choice):
@@ -43,10 +44,11 @@ class Menu:
             elif choice == 6:
                 pass
             elif choice == 7:
-                os.remove("devops22-python\shop.db")
+                pass
             else:
-                raise Exception
-        except Exception:
+                raise ValueError("efe")
+        except Exception as e:
+            print(e)
             print(f"menu error. {choice} is not an option")
 
 
