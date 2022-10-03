@@ -11,9 +11,11 @@ class Menu:
         2. Visa meny.
         3. add_order
         4. show_orders
-        5. ta bort en vara från varukorgen
-        6. slutför beställning
-        7. Dbmanager().delete_db() 
+        5. complete order
+        6. random_beverage
+        7. show_all_order
+        8. show_completed_orders 
+        9. delete_order
         """
  
     def __init__(self):
@@ -21,7 +23,7 @@ class Menu:
  
     def user_input(self):
         try: # varför fungerar inte det?
-            return int(input("Enter your choice [1-6]: "))
+            return int(input("Enter your choice [1-9]: "))
         except ValueError as v:
             print(v)
             print("du måste ange en integer. ")
@@ -40,11 +42,15 @@ class Menu:
             elif choice == 4:
                 Dbmanager().show_orders()
             elif choice == 5:
-                pass
+                Dbmanager().complete_order()
             elif choice == 6:
-                pass
+                Dbmanager().random_beverage()
             elif choice == 7:
-                pass
+                Dbmanager().show_all_orders()
+            elif choice == 8:
+                Dbmanager().show_completed_orders()
+            elif choice == 9:
+                Dbmanager().delete_order()
             else:
                 raise ValueError("efe")
         except Exception as e:
