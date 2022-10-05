@@ -1,4 +1,5 @@
 from dbmanager import *
+from order import *
 import os
 
 class Menu:
@@ -52,11 +53,9 @@ class Menu:
             elif choice == 9:
                 Dbmanager().delete_order()
             else:
-                raise ValueError("efe")
+                raise ValueError(f"Menu error. {choice} is not an option. ")
         except Exception as e:
             print(e)
-            print(f"menu error. {choice} is not an option")
-
 
     def menu_loop(self):
         self.running = True
