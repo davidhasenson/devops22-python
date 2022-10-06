@@ -1,50 +1,8 @@
-from itertools import count
-from operator import itemgetter
-import sqlite3, csv, os, random
-from ssl import Options
-from menu import *
-
+import sqlite3, csv, random
+from prettytable import from_db_cursor
 
 con = sqlite3.connect("slutuppgift_kafeterian\shop.db")
 cur = con.cursor()
-
-
-# CREATE_TABLE_MENUITEMS = """
-#                 CREATE TABLE IF NOT EXISTS menu(
-#                     itemid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-#                     itemname TEXT UNIQUE,
-#                     description TEXT
-#                 )
-#                 """
-
-# INSERT_DATA_MENUITEMS = """
-#                 INSERT INTO menu(
-#                     itemname,
-#                     description
-#                 ) 
-#                 VALUES (?, ?)
-#                 """
-
-# CREATE_TABLE_ORDERS = """
-#                 CREATE TABLE IF NOT EXISTS orders(
-#                     orderid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-#                     itemid INTEGER NOT NULL,
-#                     extrasugar TEXT,
-#                     extramilk TEXT,
-#                     completed TEXT,
-#                     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
-#                 )
-#                 """
-
-# INSERT_DATA_ORDERS = """
-#                 INSERT INTO orders(
-#                     itemid,
-#                     extrasugar,
-#                     extramilk,
-#                     completed
-#                 ) 
-#                 VALUES (?, ?, ?, ?)
-#                 """
 
 class Dbmanager:
 
@@ -101,15 +59,14 @@ class Dbmanager:
 
     def import_csv_file_to_db(self):
         try:   
-            path = "slutuppgift_kafeterian\drycker.csv" #input("Enter file path: ")
+            path = input("Enter file path: ")
             with open(path, "r") as file:
                 reader = csv.reader(file)
-                print(reader)
                 with con:
                     cur.execute(self.create_table_menu())
                     for row in reader:
-                        print(row)
                         cur.execute(self.insert_into_menu(), row)
+                    print("The file has been imported. ")
         except Exception:
             print("Importing file failed. ")
 
@@ -117,10 +74,12 @@ class Dbmanager:
         try:
             with con:
                 cur.execute("SELECT * FROM menu")
-                menu = cur.fetchall()
-                print(f"\n  Item id \t Item name \t  Description ")
-                for i in menu:
-                    print(f"\t{i[0]} \t {i[1]} \t {i[2]}")
+                formatedtable = from_db_cursor(cur)
+                print(formatedtable)
+                # menu = cur.fetchall()
+                # print(f"\n  Item id \t Item name \t  Description ")
+                # for i in menu:
+                #     print(f"\t{i[0]} \t {i[1]} \t {i[2]}")
         except Exception:
             print("Error. Can't show menu. ")
 
@@ -313,32 +272,25 @@ class Dbmanager:
         try:
             with con:
                 cur.execute("SELECT orders.*, menu.itemname FROM orders JOIN menu ON menu.itemid = orders.itemid")
-                orders = cur.fetchall()
-                print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree \t status \t timestamp ")
-                for i in orders:
-                    print(f"{i[0]} \t {i[1]} \t {i[9]} \t {i[2]}  \t {i[3]} \t {i[4]} \t\t {i[5]} \t\t {i[6]} \t {i[7]} \t {i[8]} ")
+                formatedtable = from_db_cursor(cur)
+                print(formatedtable)
+                # orders = cur.fetchall()
+                # print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree \t status \t timestamp ")
+                # for i in orders:
+                #     print(f"{i[0]} \t {i[1]} \t {i[9]} \t {i[2]}  \t {i[3]} \t {i[4]} \t\t {i[5]} \t\t {i[6]} \t {i[7]} \t {i[8]} ")
         except Exception as e:
             print(e)
-
-    # def show_completed_orders(self):
-    #     try:
-    #         with con:
-    #             cur.execute("SELECT orders.*, menu.itemname FROM orders JOIN menu ON menu.itemid = orders.itemid WHERE completed = 'y'")
-    #             orders = cur.fetchall()
-    #             print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree \t status \t timestamp ")
-    #             for i in orders:
-    #                 print(f"{i[0]} \t {i[1]} \t {i[9]} \t {i[2]}  \t {i[3]} \t {i[4]} \t\t {i[5]} \t\t {i[6]} \t {i[7]} \t {i[8]} ")
-    #     except Exception as e:
-    #         print(e)
 
     def show_received_orders(self):
         try:
             with con:
                 cur.execute("SELECT orders.*, menu.itemname FROM orders JOIN menu ON menu.itemid = orders.itemid WHERE Status = 'Received'")
-                orders = cur.fetchall()
-                print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree \t status \t timestamp ")
-                for i in orders:
-                    print(f"{i[0]} \t {i[1]} \t {i[9]} \t {i[2]}  \t {i[3]} \t {i[4]} \t\t {i[5]} \t\t {i[6]} \t {i[7]} \t {i[8]} ")
+                formatedtable = from_db_cursor(cur)
+                print(formatedtable)
+                # orders = cur.fetchall()
+                # print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree \t status \t timestamp ")
+                # for i in orders:
+                #     print(f"{i[0]} \t {i[1]} \t {i[9]} \t {i[2]}  \t {i[3]} \t {i[4]} \t\t {i[5]} \t\t {i[6]} \t {i[7]} \t {i[8]} ")
         except Exception as e:
             print(e)
 
@@ -346,10 +298,12 @@ class Dbmanager:
         try:
             with con:
                 cur.execute("SELECT orders.*, menu.itemname FROM orders JOIN menu ON menu.itemid = orders.itemid WHERE Status = 'Finished'")
-                orders = cur.fetchall()
-                print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree \t status \t timestamp ")
-                for i in orders:
-                    print(f"{i[0]} \t {i[1]} \t {i[9]} \t {i[2]}  \t {i[3]} \t {i[4]} \t\t {i[5]} \t\t {i[6]} \t {i[7]} \t {i[8]} ")
+                formatedtable = from_db_cursor(cur)
+                print(formatedtable)
+                # orders = cur.fetchall()
+                # print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree \t status \t timestamp ")
+                # for i in orders:
+                #     print(f"{i[0]} \t {i[1]} \t {i[9]} \t {i[2]}  \t {i[3]} \t {i[4]} \t\t {i[5]} \t\t {i[6]} \t {i[7]} \t {i[8]} ")
         except Exception as e:
             print(e)
 
@@ -357,14 +311,12 @@ class Dbmanager:
         try:
             with con:
                 cur.execute("SELECT orders.*, menu.itemname FROM orders JOIN menu ON menu.itemid = orders.itemid WHERE Status = 'Served'")
-                orders = cur.fetchall()
-                print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree \t status \t timestamp ")
-                for i in orders:
-                    print(f"{i[0]} \t {i[1]} \t {i[9]} \t {i[2]}  \t {i[3]} \t {i[4]} \t\t {i[5]} \t\t {i[6]} \t {i[7]} \t {i[8]} ")
+                formatedtable = from_db_cursor(cur)
+                print(formatedtable)
+                # orders = cur.fetchall()
+                # print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree \t status \t timestamp ")
+                # for i in orders:
+                #     print(f"{i[0]} \t {i[1]} \t {i[9]} \t {i[2]}  \t {i[3]} \t {i[4]} \t\t {i[5]} \t\t {i[6]} \t {i[7]} \t {i[8]} ")
         except Exception as e:
             print(e)
-
-
-
-    
 

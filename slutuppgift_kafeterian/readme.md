@@ -1,10 +1,15 @@
-Föt att starta rogrammet kör main.py.
-Börja med att köra menyval 1 för att fylla på med drycker. Ange path till drycker.csv.
+To start the program run main.py. 
+Start by running menu choice 1 to populate the menu database. Enter path to drinks.csv.
 
-Källor:
+Dependencies (must be installed for the program to function properly):
+prettytable, Install via pip: python -m pip install -U prettytable
+
+Sources:
 https://docs.python.org/3/
 https://www.w3schools.com/python/default.asp
-Grupparbetet.
-Kursmatrial.
+Group assignment.
+Course material.
+https://stackoverflow.com/questions/9535954/printing-lists-as-tabular-data
+https://pypi.org/project/prettytable/
 
-order.py blev ej klar och används inte.
+order.py was not completed and is not used.

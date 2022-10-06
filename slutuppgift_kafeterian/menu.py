@@ -1,6 +1,4 @@
 from dbmanager import *
-from order import *
-import os
 
 class Menu:
 
@@ -37,7 +35,7 @@ class Menu:
     def menu_choice(self, choice):
         try:
             if choice == 0:
-                print("quitting program")
+                print("Exiting the program.")
                 self.running = False
             elif choice == 1:
                 Dbmanager().import_csv_file_to_db()
