@@ -51,28 +51,53 @@ class Dbmanager:
     def __init__(self) -> None:
         pass
 
+    def create_table_menu(self):
+        return """
+            CREATE TABLE IF NOT EXISTS menu(
+                itemid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                itemname TEXT UNIQUE,
+                description TEXT
+            )
+            """
+
+    def insert_into_menu(self):
+        return """
+            INSERT INTO menu(
+                itemname,
+                description
+            ) 
+            VALUES (?, ?)
+            """
+
     def create_table_orders(self):
-            return """
-                CREATE TABLE IF NOT EXISTS orders(
-                    orderid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                    itemid INTEGER NOT NULL,
-                    extrasugar TEXT,
-                    extramilk TEXT,
-                    completed TEXT,
-                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
-                )
-                """
+        return """
+            CREATE TABLE IF NOT EXISTS orders(
+                orderid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                itemid INTEGER NOT NULL,
+                extrasugar TEXT,
+                extramilk TEXT,
+                sugarfree TEXT,
+                decaffeinated TEXT, 
+                lactosefree TEXT,
+                completed TEXT,
+                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+            )
+            """
 
     def insert_into_orders(self):
-            return """
-                INSERT INTO orders(
-                    itemid,
-                    extrasugar,
-                    extramilk,
-                    completed
-                ) 
-                VALUES (?, ?, ?, ?)
-                """
+        return """
+            INSERT INTO orders(
+                itemid,
+                extrasugar,
+                extramilk,
+                sugarfree,
+                decaffeinated, 
+                lactosefree,
+                completed
+                
+            ) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """
 
     def import_csv_file_to_db(self):
         try:   
@@ -81,10 +106,10 @@ class Dbmanager:
                 reader = csv.reader(file)
                 print(reader)
                 with con:
-                    cur.execute(CREATE_TABLE_MENUITEMS)
+                    cur.execute(self.create_table_menu())
                     for row in reader:
                         print(row)
-                        cur.execute(INSERT_DATA_MENUITEMS, row)
+                        cur.execute(self.insert_into_menu(), row)
         except Exception:
             print("Importing file failed. ")
 
@@ -106,10 +131,13 @@ class Dbmanager:
                 return
             extrasugar = self.input_y_or_n("Do you want extra sugar?(y/n) ")
             extramilk = self.input_y_or_n("Do you want extra milk?(y/n) ")
+            sugarfree = self.input_y_or_n("Do you want sugar free?(y/n) ")
+            decaffeinated = self.input_y_or_n("Do you want decaffeinated?(y/n) ")
+            lactosefree = self.input_y_or_n("Do you want lactosefree?(y/n) ")
             with con:
                 cur.execute(self.create_table_orders())
                 cur.execute("SELECT * FROM menu")
-                cur.execute(self.insert_into_orders(), (itemid, extrasugar, extramilk, "n"))
+                cur.execute(self.insert_into_orders(), (itemid, extrasugar, extramilk, sugarfree, decaffeinated, lactosefree, "n"))
         except Exception:
             print("Error. Could not complete order. ")
 
@@ -118,9 +146,9 @@ class Dbmanager:
             with con:
                 cur.execute("SELECT orders.*, menu.itemname FROM orders JOIN menu ON menu.itemid = orders.itemid WHERE completed = 'n'")
                 orders = cur.fetchall()
-                print("orderid  itemid  itemname  extrasugar extramilk completed timestamp")
+                print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree completed timestamp ")
                 for i in orders:
-                    print(f"{i[0]} \t {i[1]} \t {i[6]} \t {i[2]} \t {i[3]} \t {i[4]} \t  {i[5]} ")
+                    print(f"{i[0]} \t {i[1]} \t {i[9]} \t {i[2]} \t {i[3]} \t {i[4]} \t {i[5]} \t {i[6]} \t {i[7]} \t  {i[8]} ")
         except Exception as e:
             print(e)
 
@@ -219,6 +247,15 @@ class Dbmanager:
             cur.execute("UPDATE orders SET completed = 'y' WHERE orderid = ?", (orderid,))       #https://www.w3schools.com/sql/sql_update.asp
         except Exception as e:
             print(e)
+
+    def order_served(self):
+        try:
+            orderid = self.check_orderid("ange order id fär att slutdöra order. 0 to exit ")
+            if orderid == 0:
+                return
+            cur.execute("UPDATE orders SET completed = 'Served' WHERE orderid = ?", (orderid,))       #https://www.w3schools.com/sql/sql_update.asp
+        except Exception as e:
+            print(e)
        
     def delete_order(self):
         try:
@@ -240,9 +277,12 @@ class Dbmanager:
                 itemid = random.randint(1, count)
                 extrasugar = random.choice(["y", "n"])
                 extramilk = random.choice(["y", "n"])
-                cur.execute(CREATE_TABLE_ORDERS)
+                sugarfree = random.choice(["y", "n"])
+                decaffeinated = random.choice(["y", "n"])
+                lactosefree = random.choice(["y", "n"])
+                cur.execute(self.create_table_orders())
                 cur.execute("SELECT * FROM menu")
-                cur.execute(INSERT_DATA_ORDERS, (itemid, extrasugar, extramilk, "n"))
+                cur.execute(self.insert_into_orders(), (itemid, extrasugar, extramilk, sugarfree, decaffeinated, lactosefree, "n"))
         except Exception:
             print("Error. Could not complete order. ")
 
@@ -251,9 +291,9 @@ class Dbmanager:
                 with con:
                     cur.execute("SELECT orders.*, menu.itemname FROM orders JOIN menu ON menu.itemid = orders.itemid")
                     orders = cur.fetchall()
-                    print("orderid  itemid  itemname  extrasugar extramilk completed timestamp")
+                    print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree completed timestamp ")
                     for i in orders:
-                        print(f"{i[0]} \t {i[1]} \t {i[6]} \t {i[2]} \t {i[3]} \t {i[4]} \t  {i[5]} ")
+                        print(f"{i[0]}  {i[1]}  {i[9]}     {i[2]}     {i[3]}    {i[4]}        {i[5]}                                                                       {i[6]}                      {i[7]}                             {i[8]} ")
             except Exception as e:
                 print(e)
 
@@ -262,9 +302,9 @@ class Dbmanager:
             with con:
                 cur.execute("SELECT orders.*, menu.itemname FROM orders JOIN menu ON menu.itemid = orders.itemid WHERE completed = 'y'")
                 orders = cur.fetchall()
-                print("orderid  itemid  itemname  extrasugar extramilk completed timestamp")
+                print("orderid  itemid  itemname  extrasugar extramilk sugarfree decaffeinated lactosefree completed timestamp ")
                 for i in orders:
-                    print(f"{i[0]} \t {i[1]} \t {i[6]} \t {i[2]} \t {i[3]} \t {i[4]} \t  {i[5]} ")
+                    print(f"{i[0]} \t {i[1]} \t {i[9]} \t {i[2]} \t {i[3]} \t {i[4]} \t {i[5]} \t {i[6]} \t {i[7]} \t  {i[8]} ")
         except Exception as e:
             print(e)
 
